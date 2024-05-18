@@ -1,0 +1,12 @@
+const express = require('express');
+const controllersProdcuts = require('../controllers/product');
+const auth = require('../middelware/auth');
+const parse = express();
+const router = express.Router();
+parse.use(express.json());
+router.post('',auth,controllersProdcuts.createProduct);
+router.get('', auth ,controllersProdcuts.getAllProducts);
+router.get('/:id', auth , controllersProdcuts.getById );
+router.put('/:productId', auth , controllersProdcuts.updateProduct);
+router.delete('/:productId', auth , controllersProdcuts.deleteProduct);
+module.exports = router;
